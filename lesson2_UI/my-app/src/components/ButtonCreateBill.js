@@ -1,0 +1,30 @@
+import React from "react";
+import { View, Text, Pressable, StyleSheet } from "react-native";
+export default function ButtonCreateBill() {
+  return (
+    <View style={styles.buttonContainer}>
+      <Pressable style={styles.button}>
+        <Text style={styles.buttonText}>TẠO ĐƠN</Text>
+      </Pressable>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    marginHorizontal: 35,
+  },
+  button: {
+    height: 60,
+    backgroundColor: "#009626",
+    borderRadius: 12,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 30,
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: 500,
+    fontSize: 18,
+  },
+});
