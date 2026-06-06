@@ -28,20 +28,20 @@ const findEmptySlot = () => {
 
 const parkACar = (car) => {
     // Tìm ra vị trí còn trống
-    let slotIndex = findEmptySlot();
+    let slotIndex = findEmptySlot(); //tìm vị trí trống
 
-    parkSlots[slotIndex] = car;
+    parkSlots[slotIndex] = car; //gán xe vào vị trí trống
 }
 
 const countCars = () => {
     // return ra tổng số xe đang đỗ trong bãi
-    let total = 0;
+    let count = 0;
     for (let i = 0; i < parkSlots.length; i++) {
         if (parkSlots[i] !== undefined) {
-            total = total + 1;
+            count = count + 1;
         }
     }
-    return total;
+    return count;
 }
 
 // camelCase;

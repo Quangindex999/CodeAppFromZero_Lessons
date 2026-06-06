@@ -12,7 +12,7 @@ const callMyName = (myName) => {
     // return sentence;
 }
 
-callMyName('Khanh');
+callMyName('Khanh'); // Hello Khanh
 
 
 let foo = 'Hello,'

@@ -10,7 +10,7 @@ https://visualstudio.microsoft.com/
 
 ```javascript
 
-let arr = [2,9,3,12,4,5];
+const arr = [2,9,3,12,4,5];
 
 // 1, Tính tổng các số trong mảng
 // 2, Tạo 1 mảng mới chứa các số lẻ 
@@ -21,7 +21,7 @@ let arr = [2,9,3,12,4,5];
 
 ```javascript
 
-let students = [
+const students = [
     { name: 'Khanh', age: 7 },
     { name: 'Linh', age: 9 },
     { name: 'Nam', age: 8 },

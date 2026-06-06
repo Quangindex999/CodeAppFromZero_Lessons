@@ -13,13 +13,13 @@ let info = {
 }
 
 // đọc thuộc tính của obj
-console.log(info.name)
-console.log(info.job.title)
-console.log(info['age'])
+console.log(info.name) // Quach Khanh
+console.log(info.job.title) //Dev
+console.log(info['age'])// 28
 // gán thuộc tính 
 info.name = 'Linh'
 info.car = 'BMW'
-console.log(info)
+console.log(info) // { name: 'Linh', age: 28, phone: '0335815969', job: { title: 'Dev', type: 'Front End' }, car: 'BMW' }
 
 
 // Array
@@ -30,20 +30,21 @@ let arrayB = [
 ]
 
 
-console.log(arrayB[0])
-console.log(arrayB[1].model)
-console.log(arrayA.length);
+console.log(arrayB[0]) // { name: 'Huyndai', model: 'Kona' }
+console.log(arrayB[1].model) // Lux
+console.log(arrayA.length); // 5
 // Thêm phần tử vào mảng 
-arrayA.push(9)
+arrayA.push(9) // [1,2,3,4,5,9]
 
 // Xoá phần tử khỏi mảng
 arrayA.splice(0, 1) // vị trí muốn xoá | số phần tử muốn xoá
+//[2,3,4,5,9]
 
 // Cập nhật phần tử
 arrayB[0] = {
     name: 'Vin',
     model: 'President',
 }
-console.log(arrayB);
+console.log(arrayB); //[{name: 'Vin', model: 'President'}, {name: 'Vinfast', model: 'Lux'}]
 
 ```

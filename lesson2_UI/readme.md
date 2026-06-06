@@ -1,4 +1,5 @@
 ## 1, yarn:
+
 gõ lệnh trong terminal:
 
 ```bash
@@ -6,6 +7,7 @@ npm install -g yarn
 ```
 
 ## 2, watchman (macOS mới cần):
+
 gõ lệnh trong terminal:
 
 ```bash
@@ -13,10 +15,12 @@ gõ lệnh trong terminal:
 ```
 
 ## 3, git:
+
 download từ:
 https://git-scm.com/
 
 ## 4, expo-cli:
+
 gõ lệnh trong terminal:
 
 ```bash
@@ -37,7 +41,7 @@ expo init my-app
 
 ```bash
 expo install react-native-screens react-native-safe-area-context
-yarn add @react-navigation/native @react-navigation/stack @react-navigation/native-stack redux react-redux
+
 ```
 
 ```bash
@@ -46,17 +50,18 @@ yarn start
 yarn web
 ```
 
-## 6, Giới thiệu cấu trúc folder: 
-* /assets:
-chứa các file media (image, video, sound...)
-* /components:
-chứa các component dùng chung trong cả app 
-* /navigations:
-chứa code config của navigation (chuyển giữa các màn / page)
-code khai báo các màn hình
-* /screens:
-Chứa code chia theo các màn hình
-* /services:
-Chứa code xử lý dữ liệu phức tạp (liên quan đến flow tính năng)
-* /utils:
-Các đoạn code helper giúp xử lý dữ liệu, dùng chung trong cả project
+## 6, Giới thiệu cấu trúc folder:
+
+- /assets:
+  chứa các file media (image, video, sound...)
+- /components:
+  chứa các component dùng chung trong cả app
+- /navigations:
+  chứa code config của navigation (chuyển giữa các màn / page)
+  code khai báo các màn hình
+- /screens:
+  Chứa code chia theo các màn hình
+- /services:
+  Chứa code xử lý dữ liệu phức tạp (liên quan đến flow tính năng)
+- /utils:
+  Các đoạn code helper giúp xử lý dữ liệu, dùng chung trong cả project
