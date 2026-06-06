@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BillItem from "../components/BillItem";
+import HeaderButton from "../components/HeaderButton";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 const ListBill = () => {
@@ -9,16 +10,7 @@ const ListBill = () => {
 
   return (
     <SafeAreaView style={styles.screen} edges={["top"]}>
-      <View style={styles.headerButtonsRow}>
-        <Pressable style={styles.headerButton}>
-          <Text style={styles.headerButtonText}>Income</Text>
-          <Ionicons name="chevron-down-sharp" color="#fff" size={16} />
-        </Pressable>
-        <Pressable style={styles.headerButton}>
-          <Text style={styles.headerButtonText}>Month</Text>
-          <Ionicons name="chevron-down-sharp" color="#fff" size={16} />
-        </Pressable>
-      </View>
+      <HeaderButton />
       <View style={styles.headerArea}>
         <Text style={styles.headerAreaText}>Total</Text>
         <Text style={styles.headerAreaAmount}>
@@ -35,7 +27,10 @@ const ListBill = () => {
         <BillItem title="Code course fee" date="6:55 5/6/2026" amount="300" />
         <BillItem title="Code course fee" date="6:55 5/6/2026" amount="300" />
       </View>
-      <Pressable style={styles.fab} onPress={() => navigation.navigate("CreateBill")}>
+      <Pressable
+        style={styles.fab}
+        onPress={() => navigation.navigate("CreateBill")}
+      >
         <Ionicons name="add" color="#fff" size={24} />
       </Pressable>
     </SafeAreaView>
@@ -47,25 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "rgb(74, 188, 103)",
   },
-  headerButtonsRow: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginTop: 10,
-  },
-  headerButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.25)",
-    borderRadius: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    gap: 15,
-  },
-  headerButtonText: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "600",
-  },
+
   headerArea: {
     height: 170,
     justifyContent: "center",
