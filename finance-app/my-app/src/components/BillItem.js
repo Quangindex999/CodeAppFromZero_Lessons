@@ -1,16 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-export default function BillItem({
-  title,
-  date,
-  amount,
-  showIcon,
-  onDelete,
-  onEdit,
-}) {
+//memo: remember the BillItem component
+//only re-render when props change
+const BillItem = memo(({ title, date, amount, onDelete, onEdit }) => {
   return (
     <View style={styles.container}>
       <View style={styles.leftContainer}>
@@ -28,7 +23,9 @@ export default function BillItem({
       </View>
     </View>
   );
-}
+});
+
+export default BillItem;
 
 const styles = StyleSheet.create({
   container: {

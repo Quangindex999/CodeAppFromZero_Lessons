@@ -1,57 +1,56 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 import Header from "../components/Header";
-import FormInput from "../components/FormInput";
-import ButtonCreateBill from "../components/ButtonCreateBill";
+import { FormInput, ButtonCreateBill } from "../components";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useBillContext } from "../components/BillContext";
 import { useNavigation, useRoute } from "@react-navigation/native";
+
 const CreateBill = () => {
-  const route = useRoute(); //khai báo navigation route
+  const route = useRoute(); //Declare navigation route
   const navigation = useNavigation();
 
   const { addBill, bills, updateBill } = useBillContext();
-  const { billId } = route.params ?? {}; //đọc xem nếu có billId có thì đang sửa ko thì tạo mới
+  const { billId } = route.params ?? {}; // check billId if it exists then edit, otherwise create
   const [amount, setAmount] = useState("");
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
 
-  const findBill = bills.find((bill) => {
-    return bill.id === billId; //tìm và duyệt bill và trả về bill có id đã tìm thấy
-  });
+  // find bill to edit(if any)
+  //useMemo to memoize the findBill function
+  const findBill = useMemo(() => {
+    return bills.find((bill) => bill.id === billId);
+  }, [bills, billId]); //only re-run the function when bills or billId change
   const headerTitle = findBill ? "Edit Bill" : "Income";
   const buttonTitle = findBill ? "Update" : "Create";
 
-  //form có dữ liệu cũ và mỗi lần chạy phụ thuộc vào findBill
+  // Pre-fill form with existing data when editing
   useEffect(() => {
     if (!findBill) return;
-
-    //nếu tìm thấy thì sửa
     setAmount(findBill.amount.toString());
     setTitle(findBill.title);
     setDate(findBill.date);
   }, [findBill]);
 
-  const handleCreateBill = async () => {
+  const handleCreateBill = useCallback(async () => {
+    // validation
     if (!amount.trim() || !title.trim() || !date.trim()) {
-      Alert.alert("Vui lòng nhập đầy đủ");
+      Alert.alert("Please fill in all fields");
       return;
     }
     const amountNumber = Number(amount);
     if (Number.isNaN(amountNumber)) {
-      Alert.alert("Số tiền phải là số");
+      Alert.alert("Amount must be a number");
       return;
     }
-
     if (amountNumber <= 0) {
-      Alert.alert("Số tiền phải lớn hơn 0");
+      Alert.alert("Amount must be greater than 0");
       return;
     }
 
-    //nếu findBill tồn tại thì sửa, ko thì tạo mới
     if (findBill) {
       const billUpdate = {
-        id: findBill.id, //cần giữ nguyên nếu ko sẽ là tạo mới
+        id: findBill.id, // keep the id to update the correct bill
         amount: amountNumber,
         title,
         date,
@@ -59,7 +58,7 @@ const CreateBill = () => {
       await updateBill(billUpdate);
     } else {
       const newBill = {
-        id: Date.now(),
+        id: Date.now(), // create a new id
         amount: amountNumber,
         title,
         date,
@@ -67,8 +66,8 @@ const CreateBill = () => {
       await addBill(newBill);
     }
 
-    navigation.goBack();
-  };
+    navigation.goBack(); // go back to the previous screen
+  }, [amount, title, date, findBill, navigation, addBill, updateBill]); //only create a new function when dependency array change
 
   return (
     <SafeAreaView style={styles.screen} edges={["top"]}>

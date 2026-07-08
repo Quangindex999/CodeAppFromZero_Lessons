@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BillItem from "../components/BillItem";
@@ -6,11 +6,28 @@ import HeaderButton from "../components/HeaderButton";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { useBillContext } from "../components/BillContext";
+
 const ListBill = () => {
   const navigation = useNavigation();
-
   const { bills, totalBills, deleteBill } = useBillContext();
-  console.log("Bills:", bills);
+
+  //Define functions before calling
+
+  //useCallBack: "Function to delete bill" - remember not to create a new function each time to render
+  const handleDelete = useCallback(
+    (id) => {
+      deleteBill(id);
+    },
+    [deleteBill],
+  ); //only create a new function when dependences array change
+
+  //useCallBack: "Function to edit bill" - remember not to create a new function each time to render
+  const handleEdit = useCallback(
+    (id) => {
+      navigation.navigate("CreateBill", { billId: id });
+    },
+    [navigation],
+  ); //only create a new function when dependences array change
 
   return (
     <SafeAreaView style={styles.screen} edges={["top"]}>
@@ -26,9 +43,6 @@ const ListBill = () => {
       </View>
       <View style={styles.card}>
         <Text style={styles.headerList}>Histrory</Text>
-        {/*
-          hiển thị danh sách dữ liệu vừa tạo
-        */}
         {bills.map((bill) => {
           return (
             <BillItem
@@ -36,10 +50,8 @@ const ListBill = () => {
               title={bill.title}
               date={bill.date}
               amount={bill.amount}
-              onDelete={() => deleteBill(bill.id)}
-              onEdit={
-                () => navigation.navigate("CreateBill", { billId: bill.id }) //cần biết id nào cần sửa
-              }
+              onDelete={() => handleDelete(bill.id)} // transmit id, call the memorized function
+              onEdit={() => handleEdit(bill.id)} // transmit id, call the memorized function
             />
           );
         })}
